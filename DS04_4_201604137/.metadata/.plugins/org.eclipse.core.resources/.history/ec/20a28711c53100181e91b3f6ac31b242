@@ -1,0 +1,29 @@
+package DS04_04;
+import java.io.*;
+
+public class Test {
+	
+	public Test(String file) {
+		
+		int words = 0, chars = 0;
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file)); // 한 줄 읽을 준비
+			String line = br.readLine(); // 한 줄 읽는다
+			while (line != null) {
+				MyStringTokenizer mst = new MyStringTokenizer(line, " ");
+				while (mst.hasMoreTokens()) {
+					++words;
+					String word = mst.nextToken().toUpperCase(); // 이해가 잘 안가는부분1
+					chars += word.length();
+				}
+				line = br.readLine(); // 여러개 있을 때 쓰는데 지금은 한 줄만 읽는 거라서 신경 안써도 됨.
+			}
+			br.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		System.out.println("words:" + words);
+		System.out.println("characters:" + chars);
+	}
+}
